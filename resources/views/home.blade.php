@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-    <h1>Welcome to my homepage</h1>
+    <h1>Welcome to Laravel 5.8</h1>
 @endsection    
