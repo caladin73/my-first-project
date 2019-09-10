@@ -13,9 +13,10 @@
 
 Route::view('/', 'home');
 
-//contact-us svare til url, contact svare til view (contact.blade.php)
-Route::view('contact-us', 'contact');
-Route::view('about', 'about');
+Route::get('contact', 'ContactFormController@create')->name('contact.create');
+Route::post('contact', 'ContactFormController@store')->name('contact.store');
+
+Route::view('about', 'about'); //->middleware('test'); //custom middleware routeMiddleware apply
 
 // Route::get('customers', 'CustomersController@index');
 // Route::get('customers/create', 'CustomersController@create');
@@ -26,10 +27,14 @@ Route::view('about', 'about');
 // //Route::delete('customers/{customer}, CustomersController@destroy');
 // Route::delete('customers/{customer}', 'CustomersController@destroy')->name('customers.destroy');
 
-Route::resource('customers', 'CustomersController');
+//->middleware('auth') restricter siden så man skal være logged ind
+Route::resource('customers', 'CustomersController'); //->middleware('auth');
 
 /*
 Route::any('{query}', 
   function() { return redirect('/'); })
   ->where('query', '.*');
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
+    //auth i contruller, kan låse det hele ned eller udvælge funktiob/sider der skal være eller ikke er adgang til except og only!
+    public function __construct()
+    {
+        $this->middleware('auth'); //->except(['index']);
+    }
+
     public function index() 
     {
         //$customers = Customer::all();
